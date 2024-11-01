@@ -18,7 +18,7 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Food Ordering App</h1>
+      <h1>Welcome To Moodify</h1>
       <button className="login-button" onClick={handleLogin}>
         Login
       </button>
