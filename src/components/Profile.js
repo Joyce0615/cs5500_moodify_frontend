@@ -1,32 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Profile.css';
 
-
 function Profile() {
-  const likedSongs = ["Song A", "Song B", "Song C"];
-  const history = ["Song X", "Song Y", "Song Z"];
-  
+  const [rating, setRating] = useState(null);
+
+  const recommendations = [
+    { title: 'Every Night (Night Visions)', artist: 'Imagine Dragons' },
+    { title: 'Atlantic (Under the Iron Sea)', artist: 'Keane' },
+    { title: 'One More Night (Overexposed)', artist: 'Maroon 5' },
+    { title: 'Honey Bee (Red River Blue)', artist: 'Blake Shelton' },
+  ];
+
+  const handleRating = (score) => {
+    setRating(score);
+    console.log('User rated:', score);
+  };
+
   return (
-    <div className="profile">
-      <h2>Profile</h2>
-      <div>
-        <h3>Liked Songs</h3>
-        <ul>
-          {likedSongs.map((song, index) => (
-            <li key={index}>{song}</li>
-          ))}
-        </ul>
+    <div className="profile-container">
+      <div className="profile-header">
+        <div className="profile-image"></div>
+        <h2>James S. William</h2>
+        <p>2.3 GB / 5 GB</p>
+        <div className="progress-bar">
+          <div className="progress" style={{ width: '46%' }}></div>
+        </div>
       </div>
-      <div>
-        <h3>Listening History</h3>
-        <ul>
-          {history.map((song, index) => (
-            <li key={index}>{song}</li>
-          ))}
-        </ul>
+      
+      <div className="tabs">
+        <span className="active-tab">Popular</span>
+        <span>New</span>
+        <span>Playlist</span>
       </div>
+
+      <div className="recommendations">
+        {recommendations.map((song, index) => (
+          <div key={index} className="song-item">
+            <div className="song-info">
+              <p className="song-title">{song.title}</p>
+              <p className="song-artist">{song.artist}</p>
+            </div>
+            <button className="rate-button" onClick={() => handleRating(index + 1)}>
+              Rate
+            </button>
+          </div>
+        ))}
+      </div>
+      
+      {rating && <p className="rating-message">Thank you for rating: {rating} stars!</p>}
     </div>
   );
 }
 
 export default Profile;
+
