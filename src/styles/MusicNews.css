@@ -1,0 +1,32 @@
+.music-news-container {
+    padding: 20px;
+    background-color: #1e1e2f;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .news-feed {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .news-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 5px;
+  }
+  
+  .news-item h2 {
+    font-size: 18px;
+    color: #ff4081;
+  }
+  
+  .news-item p {
+    font-size: 14px;
+    color: #ccc;
+  }
+  

@@ -28,8 +28,8 @@ function Profile() {
       </div>
       
       <div className="tabs">
-        <span className="active-tab">Popular</span>
-        <span>New</span>
+        <span className="active-tab">Recommendation History</span>
+        <span>Your Favourites</span>
         <span>Playlist</span>
       </div>
 

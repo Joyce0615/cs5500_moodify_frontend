@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserSelectionContext } from '../App'; // Import the context
 import '../styles/MoodSelection.css';
 
 function MoodSelection() {
   const [selectedMood, setSelectedMood] = useState('Peaceful');
-  
+  const { updateSelection } = useContext(UserSelectionContext); // Access the updateSelection function
+  const navigate = useNavigate();
+
   const moods = [
     'Angry', 'Carefree', 'Ecstatic', 'Peaceful', 'Sad', 'Serious', 'Uplifting'
   ];
+
+  const handleGetRecommendations = () => {
+    updateSelection('mood', selectedMood); // Store the selected mood
+    navigate('/songs'); // Navigate to the Songs page
+  };
 
   return (
     <div className="mood-container">
@@ -25,7 +34,7 @@ function MoodSelection() {
         ))}
       </div>
 
-      <button className="recommendations-button">
+      <button className="recommendations-button" onClick={handleGetRecommendations}>
         Get recommendations
       </button>
     </div>
@@ -33,3 +42,4 @@ function MoodSelection() {
 }
 
 export default MoodSelection;
+
