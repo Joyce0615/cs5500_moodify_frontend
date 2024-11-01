@@ -1,0 +1,47 @@
+/* Styling for the login page */
+.login-container {
+    text-align: center;
+    margin-top: 100px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  
+  button {
+    display: block;
+    margin: 10px auto;
+    padding: 15px 30px;
+    width: 220px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+  
+  .login-button {
+    background-color: #004d40; /* Teal color */
+  }
+  
+  .create-account-button {
+    background-color: #424242; /* Dark grey color */
+  }
+  
+  .guest-button {
+    background-color: #424242; /* Dark grey color */
+  }
+  
+  /* Hover effects */
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Adjust font color and size */
+  button:active {
+    transform: scale(0.98);
+    transition: all 0.2s;
+  }
+  
