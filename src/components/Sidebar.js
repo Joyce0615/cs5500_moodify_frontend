@@ -29,7 +29,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu } from 'antd';
-import { AppstoreOutlined, LoginOutlined, SmileOutlined, SearchOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, LoginOutlined, SmileOutlined, SearchOutlined, HomeOutlined } from '@ant-design/icons';
 import '../styles/Sidebar.css';
 
 function getItem(label, key, icon, children, type) {
@@ -44,6 +44,7 @@ function getItem(label, key, icon, children, type) {
 
 const items = [
   getItem('Navigation', 'sub2', <AppstoreOutlined />, [
+    getItem('Home Page', 'home-page', <HomeOutlined />),
     getItem('Mood Selection', 'mood-selection', <SmileOutlined />),
     getItem('Music News', 'music-news', <SearchOutlined />),
     getItem('Profile', 'profile', <AppstoreOutlined />),

@@ -96,6 +96,7 @@ function App() {
           <div style={{ marginLeft: '260px', padding: '20px', width: '100%' }}>
             <Routes>
               <Route path="/" element={<Login />} />
+              <Route path="/home-page" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/age-selection" element={<AgeSelection />} />
               <Route path="/sex-selection" element={<SexSelection />} />
