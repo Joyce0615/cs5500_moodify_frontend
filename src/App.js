@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Moodify/Account/Login';
 import MoodSelection from './Moodify/MoodSelection/MoodSelection';
+import ActivitySelection from './Moodify/MoodSelection/ActivitySelection';
+import WeatherSelection from './Moodify/MoodSelection/WeatherSelection';
+import TimeOfDaySelection from './Moodify/MoodSelection/TimeOfDaySelection';
 import Profile from './Moodify/Profile/Profile';
 import NavigationBar from './Moodify/Navigation/NavigationBar';
 import MusicNews from './Moodify/MusicNews/MusicNews';
@@ -19,6 +22,9 @@ function App() {
             <Route path="/Moodify/Login" element={<Login />} /> 
             <Route path="/Moodify/Signup" element={<Signup />} /> 
             <Route path="/Moodify/MoodSelection" element={<MoodSelection />} /> 
+            <Route path="/Moodify/ActivitySelection" element={<ActivitySelection />} />
+            <Route path="/Moodify/WeatherSelection" element={<WeatherSelection />} />
+            <Route path="/Moodify/TimeOfDaySelection" element={<TimeOfDaySelection />} />
             <Route path="/Moodify/Profile" element={<Profile />} /> 
             <Route path="/Moodify/MusicNews" element={<MusicNews />} />
           </Routes>
