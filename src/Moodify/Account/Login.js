@@ -43,7 +43,7 @@ function Login() {
       } catch (error) {
         // internet error
         console.error("Error logging in:", error);
-        setError("An unexpected error occurred. Please check your connection and try again.");
+        setError("Password or Username is incorrect. Please try again");
       }
     }
   };
