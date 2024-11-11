@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/MusicNews.css';
+import './MusicNews.css';
 
 function MusicNews() {
   const news = [
