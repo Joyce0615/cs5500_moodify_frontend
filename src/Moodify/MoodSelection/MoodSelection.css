@@ -1,88 +1,39 @@
-/* Container for the mood selection */
+/* mood selection container */
 .mood-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    min-height: 100vh;
-    background-color: #f5f7fa;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-  }
-  
-  /* Header text */
-  .mood-container h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .mood-container p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 30px;
-  }
-  
-  /* Slider container for moods */
-  .mood-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
-  }
-  
-  /* Individual mood item */
-  .mood-item {
-    font-size: 18px;
-    padding: 10px;
-    color: #aaa;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .mood-item.active {
-    color: #000;
-    font-weight: bold;
-    transform: scale(1.2);
-  }
-  
-  /* Button for getting recommendations */
-  .recommendations-button {
-    padding: 15px 30px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .recommendations-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .recommendations-button:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* For mobile responsiveness */
-  @media (max-width: 768px) {
-    .mood-container h1 {
-      font-size: 20px;
-    }
-  
-    .mood-item {
-      font-size: 16px;
-    }
-  
-    .recommendations-button {
-      width: 100%;
-      padding: 12px 0;
-      font-size: 14px;
-    }
-  }
-  
+  margin-top: 100px;
+  text-align: center;
+}
+
+.mood-slider {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.mood-item {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-top: 250px;
+  padding: 15px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mood-item.active {
+  color: #4CAF50;
+}
+
+.mood-item:hover {
+  background-color: #ddd;
+}
+

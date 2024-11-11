@@ -1,45 +1,37 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { UserSelectionContext } from '../../App'; // Import the context
 import './MoodSelection.css';
 
-function MoodSelection() {
-  const [selectedMood, setSelectedMood] = useState('Peaceful');
-  // const { updateSelection } = useContext(UserSelectionContext); // Access the updateSelection function
+export default function MoodSelection() {
+  const [selectedMood, setSelectedMood] = useState(null);
   const navigate = useNavigate();
 
   const moods = [
-    'Angry', 'Carefree', 'Ecstatic', 'Peaceful', 'Sad', 'Serious', 'Uplifting'
+    'Happy', 'Sad', 'Angry', 'Calm', 'Excited', 'Tired', 'Anxious', 'Relaxed', 
+    'Confused', 'Bored'
   ];
 
-  // const handleGetRecommendations = () => {
-  //   updateSelection('mood', selectedMood); // Store the selected mood
-  //   navigate('/songs'); // Navigate to the Songs page
-  // };
+  const handleMoodSelect = (mood) => {
+    setSelectedMood(mood);
+    navigate('/Moodify/ActivitySelection'); // when select mood navigate to activity
+  };
 
   return (
     <div className="mood-container">
       <h1>What mood are you in?</h1>
-      <p>Select your current mood based on how you are feeling so that we can suggest the music you need.</p>
+      <p>Select your current mood based on your feelings</p>
 
       <div className="mood-slider">
         {moods.map((mood, index) => (
           <div
             key={index}
             className={`mood-item ${selectedMood === mood ? 'active' : ''}`}
-            onClick={() => setSelectedMood(mood)}
+            onClick={() => handleMoodSelect(mood)}
           >
             {mood}
           </div>
         ))}
       </div>
-
-      {/* <button className="recommendations-button" onClick={handleGetRecommendations}> */}
-        {/* Get recommendations
-      </button> */}
     </div>
   );
 }
-
-export default MoodSelection;
-
