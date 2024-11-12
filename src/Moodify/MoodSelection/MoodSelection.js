@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MoodSelection.css';
 
 export default function MoodSelection() {
-  const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMoods, setSelectedMoods] = useState([]);
   const navigate = useNavigate();
 
   const moods = [
@@ -11,9 +11,33 @@ export default function MoodSelection() {
     'Confused', 'Bored'
   ];
 
+  useEffect(() => {
+    try {
+      const savedMoods = JSON.parse(localStorage.getItem('selectedMoods'));
+      setSelectedMoods(Array.isArray(savedMoods) ? savedMoods : []);
+    } catch (error) {
+      console.error("Error parsing JSON from localStorage:", error);
+      setSelectedMoods([]);
+      localStorage.removeItem('selectedMoods');
+    }
+  }, []);
+
   const handleMoodSelect = (mood) => {
-    setSelectedMood(mood);
-    navigate('/Moodify/ActivitySelection'); // when select mood navigate to activity
+    let updatedMoods = [...selectedMoods];
+  
+    if (selectedMoods.includes(mood)) {
+      updatedMoods = selectedMoods.filter((selectedMood) => selectedMood !== mood);
+    } else if (selectedMoods.length < 3) {
+      updatedMoods = [...selectedMoods, mood];
+    } else {
+      return;
+    }
+    setSelectedMoods(updatedMoods);
+    localStorage.setItem('selectedMoods', JSON.stringify(updatedMoods));
+  };
+
+  const handleNext = () => {
+    navigate('/Moodify/ActivitySelection');
   };
 
   return (
@@ -25,12 +49,20 @@ export default function MoodSelection() {
         {moods.map((mood, index) => (
           <div
             key={index}
-            className={`mood-item ${selectedMood === mood ? 'active' : ''}`}
+            className={`mood-item ${selectedMoods.includes(mood) ? 'active' : ''}`}
             onClick={() => handleMoodSelect(mood)}
           >
             {mood}
           </div>
         ))}
+      </div>
+      <div className="button-container">
+        <button className="back-button" disabled>
+          Back
+        </button>
+        <button className="next-button" onClick={handleNext} disabled={selectedMoods.length === 0}>
+          Next
+        </button>
       </div>
     </div>
   );

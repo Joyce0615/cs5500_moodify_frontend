@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MoodSelection.css';
 
@@ -10,12 +10,27 @@ export default function ActivitySelection() {
 
   const activities = [
     'Working', 'Studying', 'Exercising', 'Socializing', 'Relaxing', 'Traveling', 
-    'Eating', 'Shopping', 'Sleeping', 'Gaming', 'Meditating', 'Watching TV', 
+    'Eating', 'Shopping', 'Gaming', 'Meditating', 'Watching TV', 
     'Reading',
   ];
 
+  useEffect(() => {
+    const savedActivity = localStorage.getItem('selectedActivity');
+    if (savedActivity) {
+      setSelectedActivity(savedActivity);
+    }
+  }, []);
+
   const handleActivitySelect = (activity) => {
     setSelectedActivity(activity);
+    localStorage.setItem('selectedActivity', activity);
+  };
+
+  const handleBack = () => {
+    navigate('/Moodify/MoodSelection');
+  };
+
+  const handleNext = () => {
     navigate('/Moodify/WeatherSelection');
   };
 
@@ -33,6 +48,14 @@ export default function ActivitySelection() {
             {activity}
           </div>
         ))}
+      </div>
+      <div className="button-container">
+        <button className="back-button" onClick={handleBack}>
+          Back
+        </button>
+        <button className="next-button" onClick={handleNext} disabled={!selectedActivity}>
+          Next
+        </button>
       </div>
     </div>
   );
