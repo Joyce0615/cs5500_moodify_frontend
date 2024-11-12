@@ -47,7 +47,11 @@ export default function Signup() {
       if (response.ok) {
         console.log("Profile saved successfully in MySQL");
         alert("Profile saved successfully!");
-        navigate("/Moodify/Login");
+
+        localStorage.setItem("user", JSON.stringify(profile));
+        localStorage.setItem("isLoggedIn", "true"); //set to login
+
+        navigate("/Moodify/MoodSelection");
       } else {
         console.error("Failed to save profile");
         alert("Failed to save profile");
