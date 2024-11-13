@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Login.css';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
 
   const handleLogin = async () => {
     if (!username && !password) {
@@ -28,6 +29,7 @@ function Login() {
         if (response.ok) {
           console.log('Login successful');
           localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem("user", username);
           navigate('/Moodify/MoodSelection');
         } else {
           //handle error
@@ -47,6 +49,7 @@ function Login() {
       }
     }
   };
+
   
 
   return (

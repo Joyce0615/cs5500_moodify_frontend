@@ -11,9 +11,28 @@ function Profile() {
   // ];
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
-  //handle logout
+
+    const username = localStorage.getItem("user");
+
+    if (username) {
+        fetch(`http://127.0.0.1:5001/api/profile?username=${username}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error retrieving profile:", data.error);
+                } else {
+                    displayUserProfile(data); // Function to update UI with profile data
+                }
+            })
+            .catch(error => console.error("Error fetching profile:", error));
+    } else {
+        console.error("No username found in local storage.");
+    }
+
+    //handle logout
   const handleLogout = () => {
     localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('user',"");
     navigate('/Moodify/Login');
   };
 
@@ -36,7 +55,26 @@ function Profile() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("Image uploaded successfully",data.fileurl);
+
+                const newdata = {
+                    img: data.fileUrl.toString(),
+                    username: localStorage.getItem("user")
+                };
+                console.log(newdata);
+
+
+                const res=await fetch('http://127.0.0.1:5001/api/img', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'  // Specify JSON content type
+                    },
+                    body: JSON.stringify(newdata)
+                });
+                if(res.ok){
+                    console.log("upload to mysql successfully");
+
+                }
+                console.log("Image uploaded successfully",data.fileUrl);
             } else {
                 console.error("Failed to upload image");
             }
@@ -45,11 +83,33 @@ function Profile() {
         }
     };
 
-  return (
+    function displayUserProfile(profile) {
+        document.getElementById("name").innerText = profile.username;
+        document.getElementById("email").innerText = profile.email;
+        document.getElementById("profileImage").src = profile.img;
+    }
+
+// HTML Structure
+    /*
+    <div>
+        <h1 id="name"></h1>
+        <p id="email"></p>
+        <img id="profileImage" alt="Profile Image" />
+    </div>
+    */
+
+
+    return (
     <div className="profile-container">
+
       <div className="profile-header">
-        <div className="profile-image"></div>
-        <h2>James S. William</h2>
+
+          <div>
+              <h1 id="name"></h1>
+              <p id="email"></p>
+              <img id="profileImage" alt="Profile Image" />
+          </div>
+
       </div>
         {/*upload image */}
         <div>

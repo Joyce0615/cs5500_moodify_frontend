@@ -48,7 +48,7 @@ export default function Signup() {
         console.log("Profile saved successfully in MySQL");
         alert("Profile saved successfully!");
 
-        localStorage.setItem("user", JSON.stringify(profile));
+        localStorage.setItem("user", profile.username);
         localStorage.setItem("isLoggedIn", "true"); //set to login
 
         navigate("/Moodify/MoodSelection");
@@ -61,12 +61,7 @@ export default function Signup() {
     }
   };
 
-  useEffect(() => {
-    const savedProfile = localStorage.getItem("profile");
-    if (savedProfile) {
-      setProfile(JSON.parse(savedProfile)); 
-    }
-  }, []);
+
 
   return (
     <div className="wd-profile-screen">
