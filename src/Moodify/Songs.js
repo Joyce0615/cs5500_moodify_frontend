@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Songs = () => {
   const [songs, setSongs] = useState([]);
@@ -33,7 +33,11 @@ const Songs = () => {
       }
     }
 
-getRecommendation();
+    useEffect(()=>{
+      getRecommendation();
+
+    },[]);
+
 
 
   if (loading) return <p>Loading recommendations...</p>;
