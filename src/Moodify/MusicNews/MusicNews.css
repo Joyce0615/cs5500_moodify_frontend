@@ -1,32 +1,50 @@
 .music-news-container {
-    padding: 20px;
-    background-color: #1e1e2f;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    text-align: center;
-  }
-  
-  .news-feed {
-    margin-top: 20px;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-  
-  .news-item {
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #333;
-    border-radius: 5px;
-  }
-  
-  .news-item h2 {
-    font-size: 18px;
-    color: #ff4081;
-  }
-  
-  .news-item p {
-    font-size: 14px;
-    color: #ccc;
-  }
-  
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  max-width: 800px; /* Make the content area wider */
+  margin: 0 auto; /* Center align */
+}
+
+.news-cards {
+  display: flex;
+  flex-direction: column; /* Display cards in a single column */
+  gap: 20px;
+}
+
+.news-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-card h2 {
+  font-size: 20px;
+  font-weight: bold; /* Make the title bold */
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.news-card p {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.news-card a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.news-card a:hover {
+  text-decoration: underline;
+}

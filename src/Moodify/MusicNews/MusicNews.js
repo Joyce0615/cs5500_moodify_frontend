@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './MusicNews.css';
+import musicNewsData from './musicNews.json'
 
-function MusicNews() {
-  const news = [
-    { id: 1, title: "New Album Release: Artist X", content: "Artist X releases their latest album today!" },
-    { id: 2, title: "Top Chart Update", content: "Song Y tops the charts for the second week in a row." },
-    { id: 3, title: "Music Festival Announced", content: "A new music festival is coming to town this summer." },
-    { id: 4, title: "Exclusive Interview with Artist Z", content: "Catch our exclusive interview with Artist Z about their new project." },
-  ];
+function getRandomNews(newsArray, count) {
+  const shuffled = [...newsArray].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+const MusicNews = () => {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const randomNews = getRandomNews(musicNewsData, 8);
+    setNews(randomNews);
+  }, []);
 
   return (
     <div className="music-news-container">
       <h1>Today's Music News</h1>
-      <div className="news-feed">
-        {news.map((item) => (
-          <div key={item.id} className="news-item">
+      <div className="news-cards">
+        {news.map((item, index) => (
+          <div key={index} className="news-card">
             <h2>{item.title}</h2>
-            <p>{item.content}</p>
+            <p>{item.snippet}</p>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">Read more</a>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default MusicNews;
