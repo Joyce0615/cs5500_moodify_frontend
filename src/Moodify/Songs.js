@@ -1,43 +1,63 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserSelectionContext } from '../App';
-import '../styles/Songs.css';
+import React, { useState } from "react";
 
-function Songs() {
-  const { userSelections } = useContext(UserSelectionContext);
-  const [recommendedSongs, setRecommendedSongs] = useState([]);
+const Songs = () => {
+  const [songs, setSongs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const data = {
+    activity: localStorage.getItem('selectedActivity').toString(),
+    mood: localStorage.getItem('selectedMoods').toString(),
+    time: localStorage.getItem('selectedTime').toString(),
+    weather: localStorage.getItem('selectedWeather').toString()
+  };
 
-  useEffect(() => {
-    // Mock fetching recommended songs based on selections
-    const fetchRecommendedSongs = () => {
-      const mockSongs = [
-        { title: 'Song A', artist: 'Artist 1' },
-        { title: 'Song B', artist: 'Artist 2' },
-        { title: 'Song C', artist: 'Artist 3' },
-        { title: 'Song D', artist: 'Artist 4' },
-      ];
-      setRecommendedSongs(mockSongs); // Replace with real recommendation logic if available
-    };
 
-    fetchRecommendedSongs();
-  }, [userSelections]);
 
+    // Replace this with your API endpoint
+    const getRecommendation = async () => {
+
+      console.log(data);
+      const response = await fetch("http://127.0.0.1:5001/api/recommend", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'  // Specify JSON content type
+        },
+        body: JSON.stringify(data),
+      });
+      if(response.ok){
+
+        const music= await response.json();
+        console.log(music);
+        setSongs(music.recommendations);
+
+        setLoading(false);
+      }
+    }
+
+getRecommendation();
+
+
+  if (loading) return <p>Loading recommendations...</p>;
   return (
-    <div className="songs-container">
-      <h1>Recommended Songs</h1>
-      <p>Based on your selections</p>
-      <div className="song-list">
-        {recommendedSongs.map((song, index) => (
-          <div key={index} className="song-item">
-            <div className="song-info">
-              <p className="song-title">{song.title}</p>
-              <p className="song-artist">{song.artist}</p>
-            </div>
-          </div>
-        ))}
+      <div>
+        <h1>Recommended Songs</h1>
+        <ul>
+          {Array.isArray(songs) ? (
+              songs.map((song, index) => (
+                  <li key={index}>
+                    <strong>{song.title}</strong> by {song.artist} -{" "}
+                    <a href={song.link} target="_blank" rel="noopener noreferrer">
+                      Listen
+                    </a>
+                  </li>
+              ))
+          ) : (
+              <p>No songs available</p>
+          )}
+        </ul>
       </div>
-    </div>
   );
-}
+};
 
 export default Songs;
+
 

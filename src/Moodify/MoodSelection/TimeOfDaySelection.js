@@ -5,7 +5,6 @@ import './MoodSelection.css';
 
 export default function TimeSelection() {
   const [selectedTime, setSelectedTime] = useState(null);
-
   const navigate = useNavigate();
 
   const timeOfDayOptions = [
@@ -28,14 +27,12 @@ export default function TimeSelection() {
     navigate('/Moodify/WeatherSelection');
   };
 
-  const getRecommendation = () => {
-    //reset four different selection in localStorage
-    localStorage.removeItem('selectedMoods');
-    localStorage.removeItem('selectedActivity');
-    localStorage.removeItem('selectedWeather');
-    localStorage.removeItem('selectedTime');
-    navigate('/Moodify/MusicNews');
-  };
+
+
+    const handleNext = () => {
+      navigate('/Moodify/recommendation');
+    };
+
 
   return (
     <div className="mood-container">
@@ -55,10 +52,11 @@ export default function TimeSelection() {
         <button className="back-button" onClick={handleBack}>
           Back
         </button>
-        <button className="get-recommendation-button" onClick={getRecommendation} disabled={!selectedTime}>
+        <button className="get-recommendation-button" onClick={handleNext} disabled={!selectedTime}>
           Get Recommendation
         </button>
       </div>
+
     </div>
   );
 }

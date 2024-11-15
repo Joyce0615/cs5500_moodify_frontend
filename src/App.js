@@ -9,7 +9,7 @@ import Profile from './Moodify/Profile/Profile';
 import NavigationBar from './Moodify/Navigation/NavigationBar';
 import MusicNews from './Moodify/MusicNews/MusicNews';
 import Signup from './Moodify/Account/Signup';
-
+import Songs from "./Moodify/Songs";
 function App() {
 
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path="/Moodify/TimeOfDaySelection" element={<TimeOfDaySelection />} />
             <Route path="/Moodify/Profile" element={<Profile />} /> 
             <Route path="/Moodify/MusicNews" element={<MusicNews />} />
+            <Route path="/Moodify/recommendation" element={<Songs />} />
           </Routes>
         </div>
       </div>
