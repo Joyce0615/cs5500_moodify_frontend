@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom"; 
+import './Signup.css';
 
 export default function Signup() {
   const [profile, setProfile] = useState({
@@ -118,7 +119,7 @@ export default function Signup() {
         <button onClick={saveProfile} className="btn btn-success w-100 mb-2" disabled={error.username || error.email}>
           Sign Up
         </button>
-        <button onClick={() => navigate("/login")} className="btn btn-danger w-100">
+        <button onClick={() => navigate("/Moodify/Login")} className="btn btn-danger w-100">
           Cancel
         </button>
       </div>

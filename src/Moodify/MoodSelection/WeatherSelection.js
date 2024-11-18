@@ -8,7 +8,7 @@ export default function WeatherSelection() {
   const navigate = useNavigate();
 
   const weatherOptions = [
-    'Sunny', 'Cloudy', 'Rainy', 'Stormy', 'Snowy', 'Windy', 'Foggy'
+    'Sunny', 'Cloudy', 'Rainy', 'Stormy', 'Snowy', 'Windy', 'Foggy', 'Humid', 'Breezy'
   ];
 
   useEffect(() => {

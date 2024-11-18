@@ -6,16 +6,18 @@
 
 .mood-slider {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 15px;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* Control spacing between items */
+  max-width: 600px; /* Optional: restrict maximum width */
+  margin-left: auto; /* Center alignment */
+  margin-right: auto; /* Center alignment */
 }
 
 .mood-item {
   background-color: #f0f0f0;
   color: #333;
-  margin-top: 180px;
+  margin-top: 50px;
   padding: 15px;
   border-radius: 50%;
   width: 80px;
@@ -42,7 +44,7 @@
   justify-content: center;
   align-items: center;
   margin: 20px auto;
-  margin-top: 200px;
+  margin-top: 100px;
   gap: 10px;
 }
 

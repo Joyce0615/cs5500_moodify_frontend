@@ -8,7 +8,7 @@ export default function MoodSelection() {
 
   const moods = [
     'Happy', 'Sad', 'Angry', 'Calm', 'Excited', 'Tired', 'Anxious', 'Relaxed', 
-    'Confused', 'Bored'
+    'Confused', 'Bored', 'Hopeful', 'Lonely', 'Empowered', 'Inspired', 'Annoyed'
   ];
 
   useEffect(() => {
@@ -43,7 +43,8 @@ export default function MoodSelection() {
   return (
     <div className="mood-container">
       <h1>What mood are you in?</h1>
-      <p>Select your current mood based on your feelings</p>
+      <p style={{ marginBottom: '0' }}>Select your current mood based on your feelings</p>
+      <p >(Select up to 3 moods)</p>
 
       <div className="mood-slider">
         {moods.map((mood, index) => (
@@ -57,9 +58,6 @@ export default function MoodSelection() {
         ))}
       </div>
       <div className="button-container">
-        <button className="back-button" disabled>
-          Back
-        </button>
         <button className="next-button" onClick={handleNext} disabled={selectedMoods.length === 0}>
           Next
         </button>

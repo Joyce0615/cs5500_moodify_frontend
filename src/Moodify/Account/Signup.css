@@ -1,0 +1,38 @@
+.wd-profile-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Vertically center the form */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .wd-profile-screen > div {
+    width: 100%;
+    max-width: 400px; /* Set a max-width for the form */
+    background: #f9f9f9; /* Optional: Add background for styling */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
+  }
+  
+  .wd-profile-screen h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .wd-profile-screen input {
+    width: 100%; /* Make input fields full width */
+    margin-bottom: 10px; /* Space between inputs */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .wd-profile-screen .btn {
+    width: 100%; /* Full-width buttons */
+    margin-top: 10px;
+  }
+  

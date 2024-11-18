@@ -1,6 +1,6 @@
 .profile-container {
-    color: #fff;
-    background-color: #1e1e2f;
+    color: #0d0101e2;
+    background-color: #fff;
     padding: 20px;
     min-height: 100vh;
     font-family: Arial, sans-serif;
@@ -12,11 +12,8 @@
 }
 
 #profileImage {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ccc;
-  margin: 0 auto 10px;
+  width: 180px !important;
+  height: 180px !important;
 }
 
 .tabs {
@@ -34,6 +31,12 @@
 .active-tab {
   color: #ff4081;
   border-bottom: 2px solid #ff4081;
+}
+
+.logout-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Optional: add some margin for spacing */
 }
 
 .logout-button {
