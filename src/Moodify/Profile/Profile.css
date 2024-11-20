@@ -3,6 +3,7 @@
     background-color: #fff;
     padding: 20px;
     min-height: 100vh;
+    padding: 0;
     font-family: Arial, sans-serif,;
 }
 
@@ -48,7 +49,7 @@
 }
 
 .logout-button {
-  margin-top: 500px;
+  margin-top: 20px;
   padding: 10px 20px;
   background-color: #d9534f;
   color: white;
@@ -61,3 +62,73 @@
   background-color: #c9302c;
 }
 
+.favourite-songs-container {
+  margin-top: 0; 
+  padding-top: 0; 
+}
+
+.table-container {
+  max-height: 400px; 
+  overflow-y: auto; 
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.songs-table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.songs-table th, .songs-table td {
+  text-align: left; 
+  padding: 10px; 
+}
+
+.songs-table th {
+  background-color: #f4f4f4; 
+  font-weight: bold; 
+}
+
+.songs-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+.songs-table tbody tr:hover {
+  background-color: #f1f1f1; 
+}
+
+.song-name {
+  width: 40%; 
+}
+
+.song-artist {
+  width: 30%; 
+  color: #666;
+}
+
+.song-actions {
+  width: 15%; 
+  text-align: center; 
+}
+
+.song-like {
+  width: 15%; 
+  text-align: right; 
+}
+
+/* 爱心按钮样式 */
+.like-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.like-button.liked {
+  color: red; /* 已喜欢状态为红色 */
+}
+
+.like-button:hover {
+  transform: scale(1.2);
+}
