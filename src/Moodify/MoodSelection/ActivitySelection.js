@@ -5,7 +5,6 @@ import './MoodSelection.css';
 
 export default function ActivitySelection() {
   const [selectedActivity, setSelectedActivity] = useState(null);
-
   const navigate = useNavigate();
 
   const activities = [

@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import './Login.css';
+import NavigationBar from '../Navigation/NavigationBar';
 import { useNavigate, Link } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
+  const backgroundImage = '../images/background.png';
 
   const handleLogin = async () => {
     if (!username && !password) {
@@ -30,6 +33,7 @@ function Login() {
           console.log('Login successful');
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem("user", username);
+          localStorage.setItem('email', email);
           navigate('/Moodify/MoodSelection');
         } else {
           //handle error
@@ -50,12 +54,12 @@ function Login() {
     }
   };
 
-  
-
   return (
     <div className="full-screen-container">
+      <img src={backgroundImage} alt="Background" />
       <div className="login-container">
-        <h1>Welcome to Moodify</h1>
+        <NavigationBar/>
+        <h2>Welcome to Moodify</h2>
         <p className="signup-prompt">
           Not have an account? <Link to="/Moodify/SignUp">Sign up</Link>
         </p>

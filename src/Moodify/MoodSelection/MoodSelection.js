@@ -12,14 +12,8 @@ export default function MoodSelection() {
   ];
 
   useEffect(() => {
-    try {
-      const savedMoods = JSON.parse(localStorage.getItem('selectedMoods'));
-      setSelectedMoods(Array.isArray(savedMoods) ? savedMoods : []);
-    } catch (error) {
-      console.error("Error parsing JSON from localStorage:", error);
-      setSelectedMoods([]);
-      localStorage.removeItem('selectedMoods');
-    }
+    const savedMoods = JSON.parse(localStorage.getItem('selectedMoods')) || [];
+    setSelectedMoods(Array.isArray(savedMoods) ? savedMoods : []);
   }, []);
 
   const handleMoodSelect = (mood) => {
