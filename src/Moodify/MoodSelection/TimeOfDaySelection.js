@@ -27,12 +27,10 @@ export default function TimeSelection() {
     navigate('/Moodify/WeatherSelection');
   };
 
-
-
-    const handleNext = () => {
-      navigate('/Moodify/recommendation');
-    };
-
+  const handleNext = () => {
+    localStorage.setItem('lastMoodSubPage', 'recommendation');
+    navigate('/Moodify/recommendation');
+  };
 
   return (
     <div className="mood-container">

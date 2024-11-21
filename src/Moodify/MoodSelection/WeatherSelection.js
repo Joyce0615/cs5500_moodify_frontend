@@ -28,6 +28,7 @@ export default function WeatherSelection() {
   };
 
   const handleNext = () => {
+    localStorage.setItem('lastMoodSubPage', 'TimeOfDaySelection');
     navigate('/Moodify/TimeOfDaySelection');
   };
 

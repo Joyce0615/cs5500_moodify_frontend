@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Songs.css";
 
 const Songs = () => {
@@ -6,6 +7,7 @@ const Songs = () => {
   const [loading, setLoading] = useState(true);
   const [likedSongs, setLikedSongs] = useState([]);
   const username = localStorage.getItem("user");
+  const navigate = useNavigate();
 
   const data = {
     activity: localStorage.getItem("selectedActivity")?.toString() || "",
@@ -14,10 +16,7 @@ const Songs = () => {
     weather: localStorage.getItem("selectedWeather")?.toString() || "",
   };
 
-    // Replace this with your API endpoint
   const getRecommendation = async () => {
-
-    console.log(data);
     const response = await fetch("http://127.0.0.1:5001/api/recommend", {
       method: "POST",
       headers: {
@@ -26,12 +25,11 @@ const Songs = () => {
       body: JSON.stringify(data),
     });
     if(response.ok){
-
       const music= await response.json();
       console.log(music);
       setSongs(music.recommendations);
-
       setLoading(false);
+      localStorage.setItem("hasFetchedSongs", "true");
     }
   }
 
@@ -98,10 +96,38 @@ const Songs = () => {
       console.error("Error liking the song:", error);
     }
   };
+  const handleStartOver = () => {
+    // Clear all selections
+    localStorage.removeItem("selectedActivity");
+    localStorage.removeItem("selectedMoods");
+    localStorage.removeItem("selectedTime");
+    localStorage.removeItem("selectedWeather");
+    localStorage.removeItem("hasFetchedSongs");
+    localStorage.removeItem("savedSongs");
+
+    // Navigate to MoodSelection
+    navigate("/Moodify/MoodSelection");
+  };
   
   useEffect(()=>{
-    getRecommendation();
-  },[]);
+    localStorage.setItem('lastMoodSubPage', 'recommendation');
+    // Check if recommendations have already been fetched
+    const hasFetchedSongs = localStorage.getItem("hasFetchedSongs") === "true";
+    if (!hasFetchedSongs) {
+      getRecommendation(); // Fetch recommendations only if not already fetched
+    } else {
+      const savedSongs = JSON.parse(localStorage.getItem("savedSongs")) || [];
+      setSongs(savedSongs);
+      setLoading(false);
+    }
+  }, []);
+
+  // Save fetched songs to localStorage whenever they change
+  useEffect(() => {
+    if (songs.length > 0) {
+      localStorage.setItem("savedSongs", JSON.stringify(songs));
+    }
+  }, [songs]);
 
   if (loading) return <p>Loading recommendations...</p>;
   
@@ -138,6 +164,11 @@ const Songs = () => {
         ) : (
           <p>No songs available</p>
         )}
+      </div>
+      <div className="button-container">
+        <button className="startover-button" onClick={handleStartOver}>
+          Start Over
+        </button>
       </div>
     </div>
   );
