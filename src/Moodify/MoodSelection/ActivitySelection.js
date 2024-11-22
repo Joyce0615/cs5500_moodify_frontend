@@ -52,7 +52,11 @@ export default function ActivitySelection() {
         <button className="back-button" onClick={handleBack}>
           Back
         </button>
-        <button className="next-button" onClick={handleNext} disabled={!selectedActivity}>
+        <button 
+          className="next-button" 
+          onClick={handleNext} 
+          disabled={selectedActivity === null}
+        >
           Next
         </button>
       </div>

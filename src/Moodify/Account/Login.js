@@ -64,25 +64,23 @@ function Login() {
           Not have an account? <Link to="/Moodify/SignUp">Sign up</Link>
         </p>
         <div className="input-container">
-          <label>Username</label>
+          <label htmlFor="username">Username</label>
           <input
+            id="username"
             type="text"
             value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              setError(''); // Clear error on input change
-            }}
+            onChange={(e) => setUsername(e.target.value)}
+            aria-label="Username input"
           />
         </div>
         <div className="input-container">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setError(''); // Clear error on input change
-            }}
+            onChange={(e) => setPassword(e.target.value)}
+            aria-label="Password input"
           />
         </div>
         <br/>
