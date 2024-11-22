@@ -30,6 +30,7 @@ export default function ActivitySelection() {
   };
 
   const handleNext = () => {
+    localStorage.setItem('lastMoodSubPage', 'WeatherSelection');
     navigate('/Moodify/WeatherSelection');
   };
 

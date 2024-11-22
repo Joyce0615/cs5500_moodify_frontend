@@ -14,6 +14,7 @@ export default function MoodSelection() {
   useEffect(() => {
     const savedMoods = JSON.parse(localStorage.getItem('selectedMoods')) || [];
     setSelectedMoods(Array.isArray(savedMoods) ? savedMoods : []);
+    localStorage.setItem('lastMoodSubPage', 'MoodSelection');
   }, []);
 
   const handleMoodSelect = (mood) => {
@@ -31,6 +32,7 @@ export default function MoodSelection() {
   };
 
   const handleNext = () => {
+    localStorage.setItem('lastMoodSubPage', 'ActivitySelection');
     navigate('/Moodify/ActivitySelection');
   };
 

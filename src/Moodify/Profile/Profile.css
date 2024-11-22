@@ -63,20 +63,30 @@
 }
 
 .favourite-songs-container {
-  margin-top: 0; 
-  padding-top: 0; 
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; /* Center alignment vertically and horizontally */
+  padding: 20px;
+  max-width: 800px;
+  flex-direction: column; /* Stack content vertically */
 }
 
 .table-container {
-  max-height: 400px; 
-  overflow-y: auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Ensure it doesn't overflow */
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
   border: 1px solid #ddd;
   border-radius: 5px;
+  margin: 0 auto; /* Center the table container */
 }
 
 .songs-table {
-  width: 100%;
-  border-collapse: collapse; 
+  width: 100%; /* Make the table occupy full width of its container */
+  max-width: 800px; /* Set a max width to avoid stretching */
+  border-collapse: collapse;
+  margin: 0 auto; /* Center the table */
 }
 
 .songs-table th, .songs-table td {
