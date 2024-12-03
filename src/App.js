@@ -10,6 +10,7 @@ import NavigationBar from './Moodify/Navigation/NavigationBar';
 import MusicNews from './Moodify/MusicNews/MusicNews';
 import Signup from './Moodify/Account/Signup';
 import Songs from "./Moodify/Songs";
+import Chatbot from './Moodify/Chatbot/Chatbot';
 function App() {
 
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/Moodify/recommendation" element={<Songs />} />
           </Routes>
         </div>
+        <Chatbot />
       </div>
     </Router>
   );

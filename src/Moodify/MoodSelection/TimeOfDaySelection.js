@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MoodSelection.css';
 
-
 export default function TimeSelection() {
   const [selectedTime, setSelectedTime] = useState(null);
   const navigate = useNavigate();
@@ -54,7 +53,6 @@ export default function TimeSelection() {
           Get Recommendation
         </button>
       </div>
-
     </div>
   );
 }
