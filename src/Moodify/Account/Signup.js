@@ -16,7 +16,7 @@ export default function Signup() {
 
   const checkAvailability = async (field, value) => {
     try {
-      const response = await fetch("http://127.0.0.1:5001/api/check", {
+      const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/check`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function Signup() {
 
   const saveProfile = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5001/api/signup", {
+      const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

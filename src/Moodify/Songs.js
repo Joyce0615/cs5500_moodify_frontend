@@ -17,7 +17,7 @@ const Songs = () => {
   };
 
   const getRecommendation = async () => {
-    const response = await fetch("http://127.0.0.1:5001/api/recommend", {
+    const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/recommend`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'  // Specify JSON content type
@@ -44,7 +44,7 @@ const Songs = () => {
       setLikedSongs(likedSongs.filter((i) => i !== index));
   
       try {
-        const response = await fetch("http://127.0.0.1:5001/api/unlike", {
+        const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/unlike`, {
           method: "POST", 
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const Songs = () => {
     setLikedSongs([...likedSongs, index]);
   
     try {
-      const response = await fetch("http://127.0.0.1:5001/api/like", {
+      const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

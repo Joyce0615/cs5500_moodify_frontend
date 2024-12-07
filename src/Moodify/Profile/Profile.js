@@ -13,7 +13,7 @@ function Profile() {
     const fetchProfile = async () => {
       if (username) {
         try {
-          const response = await fetch(`http://127.0.0.1:5001/api/profile?username=${username}`);
+          const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/profile?username=${username}`);
           const data = await response.json();
           if (data.error) {
             console.error("Error retrieving profile:", data.error);
@@ -31,7 +31,7 @@ function Profile() {
     const fetchLikedSongs = async () => {
       if (username) {
         try {
-          const response = await fetch(`http://127.0.0.1:5001/api/liked-songs/${username}`);
+          const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/liked-songs/${username}`);
           const data = await response.json();
           if (data.error) {
             console.error("Error retrieving liked songs:", data.error);
@@ -68,7 +68,7 @@ function Profile() {
     formData.append("profileImage", selectedFile);
 
     try {
-      const response = await fetch('http://127.0.0.1:5001/api/upload', {
+      const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -92,7 +92,7 @@ function Profile() {
 
   const handleUnlike = async (title, artist) => {
     try {
-      const response = await fetch("http://127.0.0.1:5001/api/unlike", {
+      const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/unlike`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
