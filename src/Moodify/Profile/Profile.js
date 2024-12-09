@@ -75,18 +75,36 @@ function Profile() {
       const data = await response.json();
 
       if (response.ok) {
+        const uploadedImageUrl = data.fileUrl;
         const newProfile = {
           ...profile,
-          img: data.fileUrl, // upload image
+          img: uploadedImageUrl, //upload image to s3
         };
-
         setProfile(newProfile); // update local
-        localStorage.setItem("profileImage", data.fileUrl);
+        localStorage.setItem("profileImage", uploadedImageUrl);
+
+        const updateResponse = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/img`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            img: uploadedImageUrl,
+            username: username,
+          }),
+        });
+  
+        if (updateResponse.ok) {
+          console.log("Database updated successfully with new image URL");
+          alert("Profile image updated successfully!");
+        } else {
+          console.error("Failed to update the database");
+        }
       } else {
         console.error("Failed to upload image");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error during image upload or database update:", error);
     }
   };
 

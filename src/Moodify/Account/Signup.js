@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; 
+import { useState } from "react"; 
 import { useNavigate } from "react-router-dom"; 
 import './Signup.css';
 
@@ -11,7 +11,14 @@ export default function Signup() {
     email: "",
   });
 
-  const [error, setError] = useState({ username: "", email: "" });
+  const [error, setError] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
   const navigate = useNavigate();
 
   const checkAvailability = async (field, value) => {
@@ -35,7 +42,24 @@ export default function Signup() {
     }
   };
 
-  const saveProfile = async () => {
+  const handleSignUp = async () => {
+    const newError = {};
+    if (!profile.username) newError.username = "Username is required";
+    if (!profile.password) newError.password = "Password is required";
+    if (!profile.firstName) newError.firstName = "First name is required";
+    if (!profile.lastName) newError.lastName = "Last name is required";
+    if (!profile.email) newError.email = "Email is required";
+
+    if (error.username) newError.username = error.username;
+    if (error.email) newError.email = error.email;
+  
+    setError(newError);
+  
+    if (Object.keys(newError).length > 0) {
+      console.error("Form validation failed:", newError);
+      return;
+    }
+  
     try {
       const response = await fetch(`${process.env.REACT_APP_REMOTE_SERVER}/api/signup`, {
         method: "POST",
@@ -50,8 +74,8 @@ export default function Signup() {
         alert("Profile saved successfully!");
 
         localStorage.setItem("user", profile.username);
-        localStorage.setItem("isLoggedIn", "true"); //set to login
-
+        localStorage.setItem("isLoggedIn", "true"); // user login
+  
         navigate("/Moodify/MoodSelection");
       } else {
         console.error("Failed to save profile");
@@ -61,8 +85,6 @@ export default function Signup() {
       console.error("Error saving profile:", error);
     }
   };
-
-
 
   return (
     <div className="wd-profile-screen">
@@ -86,22 +108,35 @@ export default function Signup() {
           placeholder="Password"
           type="password"
           value={profile.password}
-          onChange={(e) => setProfile({ ...profile, password: e.target.value })}
-        /><br/>
-        
+          onChange={(e) => {
+            setProfile({ ...profile, password: e.target.value });
+            setError({ ...error, password: "" });
+          }}/>
+          {error.password && <span className="error text-danger">{error.password}</span>}
+          <br/>
         <input
           className="wd-firstname form-control"
           placeholder="First Name"
           value={profile.firstName}
-          onChange={(e) => setProfile({ ...profile, firstName: e.target.value })}
-        /><br/>
+          onChange={(e) => {
+            setProfile({ ...profile, firstName: e.target.value });
+            setError({ ...error, firstName: "" });
+          }}
+        />
+        {error.firstName && <span className="error text-danger">{error.firstName}</span>}
+        <br/>
         
         <input
           className="wd-lastname form-control"
           placeholder="Last Name"
           value={profile.lastName}
-          onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
-        /><br/>
+          onChange={(e) => {
+            setProfile({ ...profile, lastName: e.target.value });
+            setError({ ...error, lastName: "" });
+          }}
+        />
+        {error.lastName && <span className="error text-danger">{error.lastName}</span>}
+        <br/>
         
         <input
           className="wd-email form-control"
@@ -116,7 +151,7 @@ export default function Signup() {
         {error.email && <span className="error text-danger">{error.email}</span>}
         <br/>
 
-        <button onClick={saveProfile} className="btn btn-success w-100 mb-2" disabled={error.username || error.email}>
+        <button onClick={handleSignUp} className="btn btn-success w-100 mb-2">
           Sign Up
         </button>
         <button onClick={() => navigate("/Moodify/Login")} className="btn btn-danger w-100">
