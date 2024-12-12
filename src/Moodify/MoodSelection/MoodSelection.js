@@ -32,8 +32,8 @@ export default function MoodSelection() {
   };
 
   const handleNext = () => {
-    localStorage.setItem('lastMoodSubPage', 'ActivitySelection');
-    navigate('/Moodify/ActivitySelection');
+    localStorage.setItem('lastMoodSubPage', 'GenreSelection');
+    navigate('/Moodify/GenreSelection');
   };
 
   return (

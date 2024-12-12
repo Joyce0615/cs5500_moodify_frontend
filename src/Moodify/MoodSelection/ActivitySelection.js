@@ -26,7 +26,7 @@ export default function ActivitySelection() {
   };
 
   const handleBack = () => {
-    navigate('/Moodify/MoodSelection');
+    navigate('/Moodify/GenreSelection');
   };
 
   const handleNext = () => {

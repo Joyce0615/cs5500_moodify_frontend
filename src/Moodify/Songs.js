@@ -14,6 +14,7 @@ const Songs = () => {
     mood: localStorage.getItem("selectedMoods")?.toString() || "",
     time: localStorage.getItem("selectedTime")?.toString() || "",
     weather: localStorage.getItem("selectedWeather")?.toString() || "",
+    genre: localStorage.getItem("selectedGenres")?.toString() || "",
   };
 
   const getRecommendation = async () => {
@@ -104,6 +105,7 @@ const Songs = () => {
     localStorage.removeItem("selectedWeather");
     localStorage.removeItem("hasFetchedSongs");
     localStorage.removeItem("savedSongs");
+    localStorage.removeItem("selectedGenres");
 
     // Navigate to MoodSelection
     navigate("/Moodify/MoodSelection");

@@ -5,7 +5,7 @@
 }
 
 .mood-slider {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px; /* Control spacing between items */
